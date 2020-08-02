@@ -5,7 +5,7 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-    image: myapp-server
+    image: jitterbeans.azurecr.io/myapp-server
     container_name: node-server
     command: /usr/src/app/node_modules/.bin/nodemon server.js
     volumes:
@@ -18,7 +18,7 @@ services:
     networks:
       - item-network
   mongo:
-    image: mongo
+    image: jitterbeans.azurecr.io/mongo
     volumes:
       - ${WEBAPP_STORAGE_HOME}/data-volume:/data/db
     ports:
@@ -29,7 +29,7 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
-    image: myapp-client
+    image: jitterbeans.azurecr.io/myapp-client
     container_name: react-client
     command: yarn start
     volumes:
