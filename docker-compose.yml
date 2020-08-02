@@ -9,7 +9,7 @@ services:
     container_name: node-server
     command: /usr/src/app/node_modules/.bin/nodemon server.js
     volumes:
-      - ./server:/usr/src/app
+      - ${WEBAPP_STORAGE_HOME}/server:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - '8080:8080'
@@ -20,7 +20,7 @@ services:
   mongo:
     image: mongo
     volumes:
-      - data-volume:/data/db
+      - ${WEBAPP_STORAGE_HOME}/data-volume:/data/db
     ports:
       - '27017:27017'
     networks:
@@ -33,7 +33,7 @@ services:
     container_name: react-client
     command: yarn start
     volumes:
-      - ./client/:/usr/app
+      - ${WEBAPP_STORAGE_HOME}/client/:/usr/app
       - /usr/app/node_modules
     depends_on:
       - server
